@@ -9,9 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://pinetcht.github.io/5C-Hackathon-2025",
+  "homepage": "https://dmwong25.github.io/5c-Hackathon-2025",
   "dependencies": {
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
