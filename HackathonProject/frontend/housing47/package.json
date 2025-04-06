@@ -7,8 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://pinetcht.github.io/5C-Hackathon-2025",
   "dependencies": {
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",

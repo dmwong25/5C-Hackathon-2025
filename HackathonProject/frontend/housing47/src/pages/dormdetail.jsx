@@ -124,7 +124,7 @@ const DormDetail = () => {
   const fetchRoomDetails = async (roomId) => {
     setTooltipLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5001/rooms/get_room_by_id/${roomId}`);
+      const response = await axios.get(`https://backend-housing47.onrender.comrooms/get_room_by_id/${roomId}`);
       setTooltipRoom(response.data);
       setTooltipLoading(false);
     } catch (error) {
@@ -151,7 +151,7 @@ const DormDetail = () => {
         setUserId(storedUserId);
 
         // Fetch user data to get class year and group info
-        const userResponse = await axios.get(`http://localhost:5001/users/get_user/${storedUserId}`);
+        const userResponse = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${storedUserId}`);
         const userData = userResponse.data;
         setUserClassYear(typeof userData.class_year === 'string' ?
           parseInt(userData.class_year, 10) :
@@ -160,7 +160,7 @@ const DormDetail = () => {
 
         // Fetch roommates to determine group size
         if (userData.group_id) {
-          const roommatesResponse = await axios.get(`http://localhost:5001/users/roommates/${storedUserId}`);
+          const roommatesResponse = await axios.get(`https://backend-housing47.onrender.comusers/roommates/${storedUserId}`);
           console.log("Roommates response:", roommatesResponse.data);
           setGroupSize(roommatesResponse.data.roommates.length);
           console.log("Group size:", roommatesResponse.data.roommates.length);
@@ -170,7 +170,7 @@ const DormDetail = () => {
         }
 
         // Fetch all rooms
-        const roomsResponse = await axios.get("http://localhost:5001/rooms");
+        const roomsResponse = await axios.get("https://backend-housing47.onrender.comrooms");
         const roomsData = roomsResponse.data;
         console.log("Total rooms fetched:", roomsData.length);
 
@@ -196,7 +196,7 @@ const DormDetail = () => {
 
         // Try to get filtered rooms, but don't break if it fails
         try {
-          const filteredRoomsResponse = await axios.get(`http://localhost:5001/rooms/filtered/${storedUserId}`);
+          const filteredRoomsResponse = await axios.get(`https://backend-housing47.onrender.comrooms/filtered/${storedUserId}`);
           const filteredDormRooms = filteredRoomsResponse.data.filter(room => room.building_id === "HARWOOD");
           console.log("Filtered rooms:", filteredDormRooms.length);
           setFilteredRooms(filteredDormRooms);
@@ -398,7 +398,7 @@ const DormDetail = () => {
       }
 
       // Check if the user already has a room assigned
-      const userResponse = await axios.get(`http://localhost:5001/users/get_user/${userId}`);
+      const userResponse = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
       const userData = userResponse.data;
       console.log("User data received:", userData);
 
@@ -412,7 +412,7 @@ const DormDetail = () => {
 
         // Unselect the current room first
         console.log("Unselecting current room...");
-        const unselectResponse = await axios.post("http://localhost:5001/rooms/unselectRoom", {
+        const unselectResponse = await axios.post("https://backend-housing47.onrender.comrooms/unselectRoom", {
           room_id: userData.room_id,
           user_id: userId
         });
@@ -421,7 +421,7 @@ const DormDetail = () => {
 
       // Select the new room
       console.log("Selecting new room...");
-      const selectResponse = await axios.post("http://localhost:5001/rooms/selectRoom", {
+      const selectResponse = await axios.post("https://backend-housing47.onrender.comrooms/selectRoom", {
         room_id: roomId,
         user_id: userId
       });
@@ -429,7 +429,7 @@ const DormDetail = () => {
 
       // Refresh the room data
       console.log("Refreshing room data...");
-      const roomsResponse = await axios.get("http://localhost:5001/rooms");
+      const roomsResponse = await axios.get("https://backend-housing47.onrender.comrooms");
       const roomsData = roomsResponse.data;
       console.log("Room data received:", roomsData.length, "rooms");
 

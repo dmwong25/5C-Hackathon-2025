@@ -29,9 +29,9 @@ export default function Users() {
                 setLoading(true);
 
                 // Get current user
-                const response = await axios.get(`http://localhost:5001/users/get_user/${userId}`);
+                const response = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
                 // Get available users
-                const availableResponse = await axios.get(`http://localhost:5001/users/available/${userId}`);
+                const availableResponse = await axios.get(`https://backend-housing47.onrender.comusers/available/${userId}`);
                 setAvailableUsers(availableResponse.data);
 
             } catch (err) {
@@ -53,7 +53,7 @@ export default function Users() {
                 return;
             }
 
-            const response = await axios.post("http://localhost:5001/users/addToGroup", {
+            const response = await axios.post("https://backend-housing47.onrender.comusers/addToGroup", {
                 currId: userId,
                 roommateId: roommateId
             });
@@ -63,11 +63,11 @@ export default function Users() {
                 setGroupId(response.data.group_id);
 
                 // Refresh the user data
-                const updatedResponse = await axios.get(`http://localhost:5001/users/get_user/${userId}`);
+                const updatedResponse = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
                 setUserData(updatedResponse.data);
 
                 // Update the available users list
-                const updatedUsersResponse = await axios.get('http://localhost:5001/users');
+                const updatedUsersResponse = await axios.get('https://backend-housing47.onrender.comusers');
                 setAllUsers(updatedUsersResponse.data);
 
                 // Filter out users who now have a group
@@ -100,14 +100,14 @@ export default function Users() {
                 return;
             }
 
-            const response = await axios.post(`http://localhost:5001/users/leaveGroup/${userId}`);
+            const response = await axios.post(`https://backend-housing47.onrender.comusers/leaveGroup/${userId}`);
 
             if (response.status === 200) {
                 // Update state to reflect the changes
                 setGroupId(null);
 
                 // Refresh user data
-                const updatedResponse = await axios.get(`http://localhost:5001/users/get_user/${userId}`);
+                const updatedResponse = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
                 setUserData(updatedResponse.data);
 
                 // Show success message
