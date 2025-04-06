@@ -60,7 +60,7 @@ export default function SignIn() {
     
     try {
       // Send POST request to your server
-      const response = await axios.post('https://backend-housing47.onrender.comlogin', formData);
+      const response = await axios.post('https://backend-housing47.onrender.com/login', formData);
       
       console.log("Login successful:", response.data);
       

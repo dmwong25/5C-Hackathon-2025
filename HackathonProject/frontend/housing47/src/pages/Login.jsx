@@ -82,7 +82,7 @@ export default function Login() {
       console.log("Sending data to server:", formDataWithIntClassYear); // Log what we're sending
       
       // Send POST request to your server with the converted data
-      const response = await axios.post('https://backend-housing47.onrender.comusers/create', formDataWithIntClassYear);
+      const response = await axios.post('https://backend-housing47.onrender.com/users/create', formDataWithIntClassYear);
       
       console.log("Registration successful:", response.data);
       

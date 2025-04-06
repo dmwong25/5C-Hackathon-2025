@@ -27,14 +27,14 @@ export default function Dashboard() {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
+        const response = await axios.get(`https://backend-housing47.onrender.com/users/get_user/${userId}`);
         setUserData(response.data);
         setGroupId(response.data.group_id);
 
         // Fetch room details if the user has a room assignment
         if (response.data.room_id) {
           try {
-            const roomResponse = await axios.get(`https://backend-housing47.onrender.comrooms/get_room_by_id/${response.data.room_id}`);
+            const roomResponse = await axios.get(`https://backend-housing47.onrender.com/rooms/get_room_by_id/${response.data.room_id}`);
             setRoomData(roomResponse.data);
           } catch (roomErr) {
             console.error("Error fetching room data:", roomErr);
@@ -44,7 +44,7 @@ export default function Dashboard() {
         // Try to fetch roommates if the user has a group
         if (response.data.group_id) {
           try {
-            const roommatesResponse = await axios.get(`https://backend-housing47.onrender.comusers/roommates/${userId}`);
+            const roommatesResponse = await axios.get(`https://backend-housing47.onrender.com/users/roommates/${userId}`);
             if (roommatesResponse.data && roommatesResponse.data.roommates) {
               setRoommates(roommatesResponse.data.roommates);
             }
@@ -75,10 +75,10 @@ export default function Dashboard() {
 
     try {
       console.log("user id", userId)
-      const response = await axios.post(`https://backend-housing47.onrender.comusers/leaveGroup/${userId}`);
+      const response = await axios.post(`https://backend-housing47.onrender.com/users/leaveGroup/${userId}`);
       console.log("Successfully left group:", response.data);
 
-      const userResponse = await axios.get(`https://backend-housing47.onrender.comusers/get_user/${userId}`);
+      const userResponse = await axios.get(`https://backend-housing47.onrender.com/users/get_user/${userId}`);
       setUserData(userResponse.data)
       setGroupId(userResponse.data.group_id);
     } catch (error) {
