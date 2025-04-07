@@ -12,18 +12,7 @@ const AboutPage = () => {
           <span style={styles.logoText}>Housing47</span>
         </div>
         <div style={styles.navLinks}>
-          <button style={styles.navLink} onClick={() => navigate("/dashboard")}>Dashboard</button>
-          <button style={styles.navLink} onClick={() => navigate("/dorms")}>Browse Housing</button>
-          <button style={styles.navLink} onClick={() => navigate("/group")}>My Group</button>
-          <button 
-            onClick={() => {
-              localStorage.removeItem("userId");
-              navigate("/");
-            }} 
-            style={styles.signOutButton}
-          >
-            Sign Out
-          </button>
+          <button style={styles.navLink} onClick={() => navigate("/")}>Home</button>
         </div>
       </header>
 

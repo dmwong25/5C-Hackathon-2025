@@ -124,7 +124,7 @@ const DormDetail = () => {
   const fetchRoomDetails = async (roomId) => {
     setTooltipLoading(true);
     try {
-      const response = await axios.get(`https://backend-housing47.onrender.com//rooms/get_room_by_id/${roomId}`);
+      const response = await axios.get(`https://backend-housing47.onrender.com/rooms/get_room_by_id/${roomId}`);
       setTooltipRoom(response.data);
       setTooltipLoading(false);
     } catch (error) {
